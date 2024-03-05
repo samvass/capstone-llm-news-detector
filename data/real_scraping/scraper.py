@@ -1,3 +1,5 @@
+import requests
+
 def get_image_from_article(row):
     title = row['Headline']
     response = requests.get(row['Url'])

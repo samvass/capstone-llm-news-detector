@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "llm-news-detector"
+version = "0.1.0"
+description = "multi-modal model for detecting llm generated news articles"
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+bs4 = "^0.0.2"
+pandas = "^2.2.1"
+requests = "^2.31.0"
+numpy = "^1.26.4"
+torch = "^2.2.1"
+torchvision = "^0.17.1"
+tqdm = "^4.66.2"
+pillow = "^10.2.0"
+transformers = "^4.38.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
