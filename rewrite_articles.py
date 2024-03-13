@@ -1,11 +1,11 @@
-import os
+import pandas as pd
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from dotenv import load_dotenv
+import ast
 
 # Load environment variables from .env file
 load_dotenv()
-
 
 llm = ChatOpenAI()
 
@@ -16,36 +16,40 @@ prompt = ChatPromptTemplate.from_messages([
 
 chain = prompt | llm 
 
+df = pd.read_csv("AI_data.csv")
+# df['Paragraph'] = df['Paragraph'].apply(ast.literal_eval)
 
-# Set up input and output directories
-input_dir = "data"
-output_dir = "new_data"
+rewritten_data = []
 
-# Create output directory if it doesn't exist
-if not os.path.exists(output_dir):
-    os.makedirs(output_dir)
-
-# Get list of .txt files in input directory
-txt_files = [file for file in os.listdir(input_dir) if file.endswith('.txt')]
+count = 0
 
 # Loop through each .txt file, rewrite using GPT-3.5, and save to new directory
-for file_name in txt_files:
-    input_file_path = os.path.join(input_dir, file_name)
-    output_file_path = os.path.join(output_dir, "new_" + file_name)
-    
-    with open(input_file_path, 'r', encoding='utf-8') as f:
-        text = f.read()
+for index, row in df.iterrows():
 
+    if (count == 10):
+        break
+    count += 1
+
+    article_title = row["Title"]
+    article_text = row["Paragraph"]
+    article_image = row["Image"]
+        
+    # Process each paragraph individually
     print("************ TEXT ************")
-    print(text)
-    
-    rewritten_text = chain.invoke({"input": text})
+    print(article_text)
 
+    rewritten_article_text = chain.invoke({"input": article_text})
+    rewritten_article_text = rewritten_article_text.content
     print("************ REWRITTEN TEXT ************")
-    print(rewritten_text.content)
+    new_rewritten_article_text = rewritten_article_text.replace("\\'", "'").replace('""', '"').replace('\n', '')
+    print(new_rewritten_article_text)
     print('\n')
 
+    rewritten_data.append({
+        'Title': article_title,
+        'Paragraph': new_rewritten_article_text,
+        'Image': article_image
+    })
 
-    # Save rewritten text to new file
-    with open(output_file_path, 'w', encoding='utf-8') as f:
-        f.write(rewritten_text.content)
+rewritten_df = pd.DataFrame(rewritten_data)
+rewritten_df.to_csv('rewritten_AI_data.csv', index=False)
