@@ -1,3 +1,5 @@
 .env
 poetry.lock
 images
+data/real_scraping/images
+data/ai_scraping/images
