@@ -2,7 +2,6 @@ import pandas as pd
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from dotenv import load_dotenv
-import ast
 
 # Load environment variables from .env file
 load_dotenv()
@@ -16,20 +15,12 @@ prompt = ChatPromptTemplate.from_messages([
 
 chain = prompt | llm 
 
-df = pd.read_csv("AI_data.csv")
-# df['Paragraph'] = df['Paragraph'].apply(ast.literal_eval)
+df = pd.read_csv("data/ai_data/AI_data.csv")
 
 rewritten_data = []
 
-count = 0
-
 # Loop through each .txt file, rewrite using GPT-3.5, and save to new directory
 for index, row in df.iterrows():
-
-    if (count == 10):
-        break
-    count += 1
-
     article_title = row["Title"]
     article_text = row["Paragraph"]
     article_image = row["Image"]
@@ -52,4 +43,4 @@ for index, row in df.iterrows():
     })
 
 rewritten_df = pd.DataFrame(rewritten_data)
-rewritten_df.to_csv('rewritten_AI_data.csv', index=False)
+rewritten_df.to_csv('./data/ai_data/rewritten_AI_data.csv', index=False)

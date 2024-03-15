@@ -4,10 +4,9 @@ version = "0.1.0"
 description = "multi-modal model for detecting llm generated news articles"
 authors = ["Your Name <you@example.com>"]
 readme = "README.md"
-package-mode = false
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.9"
 bs4 = "^0.0.2"
 pandas = "^2.2.1"
 requests = "^2.31.0"
