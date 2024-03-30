@@ -2,4 +2,5 @@
 poetry.lock
 images
 data/real_scraping/images
+data/real_scraping/BBC_images
 data/ai_scraping/images

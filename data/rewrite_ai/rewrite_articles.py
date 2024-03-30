@@ -40,7 +40,7 @@ for index, row in df.iterrows():
         'Title': article_title,
         'Text': new_rewritten_article_text,
         'Image': article_image,
-        'label' : 1
+        'Label' : 1
     })
 
 rewritten_df = pd.DataFrame(rewritten_data)

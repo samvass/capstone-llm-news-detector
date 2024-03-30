@@ -80,7 +80,7 @@ def find_article_img(article: pd.Series) -> str:
 
     return filename
 
-if __name__ = "__main__":
+if __name__ == "__main__":
     cnn_df = get_cnn_articles_dataframe(250)
     cnn_df['Text'] = cnn_df['Text'].apply(sanitize_text)
     cnn_df['Title'] = cnn_df['Title'].apply(sanitize_title)
