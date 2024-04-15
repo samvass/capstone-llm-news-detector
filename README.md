@@ -96,7 +96,7 @@ Poetry creates a virtual environment for your project to manage dependencies sep
 
 #### Members:
 
-|Name     |  Slack Handle   | 
-|---------|-----------------|
-|[Samuel Vasserman](https://github.com/[[github handle](https://github.com/samvass)])| @samvass        |
-|[Adam Geenen](https://github.com/[[github handle]](https://github.com/Geener)) |     @adam    |
+|Name     |
+|---------|
+|[Samuel Vasserman](https://github.com/samvass) |
+|[Adam Geenen](https://github.com/Geener) |
